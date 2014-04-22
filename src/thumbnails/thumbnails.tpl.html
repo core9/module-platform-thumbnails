@@ -1,0 +1,25 @@
+<h1 class="page-header">Image settings</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Profile name</th>
+    <th>Actions</th>
+  </tr>
+  <tr ng-repeat="profile in profiles">
+    <td>{{profile.name}}</td>
+    <td>
+      <button class="btn btn-success" ng-click="edit(profile)"><i class="fa fa-cog"></i></button>
+      <button class="btn btn-warning" ng-click="flush(profile)"><i class="fa fa-refresh"></i></button>
+      <button class="btn btn-danger" ng-click="remove(profile, $index)"><i class="fa fa-trash-o"></i></button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div class="form-group">
+        <input ng-model="newName" type="text" placeholder="New widget name" class="form-control input-md">
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-success" ng-click="add(newName)"><i class="fa fa-plus"></i> New profile</button>
+    </td>
+  </tr>
+</table>
