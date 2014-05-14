@@ -95,8 +95,29 @@ angular.module('core9Dashboard.thumbnails.config', [
   };
 })
 
-.controller("ThumbnailsEditCtrl", function ($scope, $state, profile) {
+.controller("ThumbnailsEditCtrl", function ($scope, $state, profile, ConfigFactory) {
+  $scope.buckets = ConfigFactory.query({configtype: 'bucket'}, function (data) {
+    if(profile.bucket === undefined || profile.bucket === '') {
+      $scope.bucket = '';
+    } else {
+      for (var i = data.length - 1; i >= 0; i--) {
+        if(data[i].name === profile.bucket) {
+          $scope.selectedBucket = data[i];
+        }
+      }
+    }
+  });
   $scope.profile = profile;
+
+  $scope.$watch('selectedBucket', function () {
+    if($scope.selectedBucket === undefined || $scope.selectedBucket === null || $scope.selectedBucket === '') {
+      $scope.profile.bucket = '';
+      $scope.profile.database = '';
+    } else {
+      $scope.profile.bucket = $scope.selectedBucket.name;
+      $scope.profile.database = $scope.selectedBucket.database;
+    }
+  });
 
   $scope.save = function () {
     $scope.profile.$update();

@@ -6,6 +6,15 @@
   </div>
 </div>
 <div class="form-group row">
+  <label class="col-md-2 control-label">Bucket</label>
+  <div class="col-md-8">
+    <select class="form-control input-md" ng-model="selectedBucket" ng-options="bucket as bucket.name for bucket in buckets">
+      <option value="">Default</option>
+    </select>
+    <span class="help-text">The bucket in which the image cache will be stored. You can add more buckets under file manager settings.</span>
+  </div>
+</div>
+<div class="form-group row">
   <label class="col-md-2 control-label">Width</label>
   <div class="col-md-8">
     <input type="number" ng-model="profile.width" class="form-control input-md" />
